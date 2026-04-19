@@ -7,6 +7,9 @@ from morpion_core import (insert_pion,
 
 from datetime import datetime
 
+import os
+
+
 # -----   ENTREE / SORTIE  / AFFICHAGE.  --------
 def affiche(board):
     print("   A   B   C")
@@ -29,6 +32,9 @@ def resultat(etat):
         print("----------------------")
         print(f"--  BRAVO Joueur {etat['pion']}  --")
         print("----------------------")
+
+        # Crée le dossier rsc/ s'il n'existe pas (sans erreur s'il existe déjà)
+        os.makedirs("rsc", exist_ok=True)
         with open("./rsc/histo.txt", "a", encoding="utf-8") as f:
             f.write(f"Le {datetime.now().strftime('%d %m %Y à %H:%M:%S')} - victoire de Joueur {etat['pion']} \n")
     else:
